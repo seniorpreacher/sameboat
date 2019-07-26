@@ -1,0 +1,148 @@
+# Project Stylesheet
+@startuml
+
+' Color Definition
+
+!define MAT_BG #FFF
+!define MAT_PRIMARY_DARK #0288D1
+!define MAT_PRIMARY_LIGHT #B3E5FC
+!define MAT_PRIMARY #03A9F4
+!define MAT_TEXT_ON_PRIMARY #FFF
+!define MAT_ACCENT #FFC107
+!define MAT_PRIMARY_TEXT #212121
+!define MAT_SECONDARY_TEXT #757575
+!define MAT_DIVIDER #BDBDBD
+
+skinparam {
+
+    ' Global Options
+    DPI 200
+    Shadowing false
+    DefaultFontName Roboto Condensed
+    DefaultMonospacedFontName Inconsolata
+    DefaultFontColor MAT_PRIMARY_TEXT
+
+    ' Styles - Borders
+    ArrowColor MAT_PRIMARY_DARK
+    ActivityBorderColor MAT_PRIMARY
+    ActivityDiamondBorderColor MAT_PRIMARY
+    ActorBorderColor MAT_PRIMARY
+    AgentBorderColor MAT_PRIMARY
+    ArtifactBorderColor MAT_PRIMARY
+    BoundaryBorderColor MAT_PRIMARY
+    'ClassBorderColor MAT_PRIMARY
+    CloudBorderColor MAT_PRIMARY
+    CollectionsBorderColor MAT_PRIMARY
+    ComponentBorderColor MAT_PRIMARY
+    ControlBorderColor MAT_PRIMARY
+    DatabaseBorderColor MAT_PRIMARY
+    EntityBorderColor MAT_PRIMARY
+    FileBorderColor MAT_PRIMARY
+    FolderBorderColor MAT_PRIMARY
+    FrameBorderColor MAT_PRIMARY
+    InterfaceBorderColor MAT_PRIMARY
+    LegendBorderColor MAT_PRIMARY
+    NodeBorderColor MAT_PRIMARY
+    NoteBorderColor MAT_PRIMARY
+    ObjectBorderColor MAT_PRIMARY
+    PackageBorderColor MAT_DIVIDER
+    ParticipantBorderColor MAT_PRIMARY
+    PartitionBorderColor MAT_PRIMARY
+    QueueBorderColor MAT_PRIMARY
+    RectangleBorderColor MAT_PRIMARY
+    SequenceBoxBorderColor MAT_PRIMARY
+    SequenceDividerBorderColor MAT_PRIMARY
+    SequenceGroupBorderColor MAT_PRIMARY
+    SequenceLifeLineBorderColor MAT_PRIMARY
+    SequenceReferenceBorderColor MAT_PRIMARY
+    StackBorderColor MAT_PRIMARY
+    StateBorderColor MAT_PRIMARY
+    StorageBorderColor MAT_PRIMARY
+    SwimlaneBorderColor MAT_PRIMARY
+    UsecaseBorderColor MAT_PRIMARY
+
+    ' Styles - Backgrounds
+
+    BackgroundColor MAT_BG
+
+    ActivityBackgroundColor MAT_BG
+    ActivityDiamondBackgroundColor MAT_BG
+    ActorBackgroundColor MAT_BG
+    AgentBackgroundColor MAT_BG
+    ArtifactBackgroundColor MAT_BG
+    BoundaryBackgroundColor MAT_BG
+    'ClassBackgroundColor MAT_BG
+    'ClassHeaderBackgroundColor MAT_PRIMARY_DARK
+    CloudBackgroundColor MAT_BG
+    CollectionsBackgroundColor MAT_BG
+    ComponentBackgroundColor MAT_BG
+    ControlBackgroundColor MAT_BG
+    DatabaseBackgroundColor MAT_BG
+    EntityBackgroundColor MAT_BG
+    FileBackgroundColor MAT_BG
+    FolderBackgroundColor MAT_BG
+    FrameBackgroundColor MAT_BG
+    IconPackageBackgroundColor MAT_BG
+    IconPrivateBackgroundColor MAT_BG
+    IconProtectedBackgroundColor MAT_BG
+    IconPublicBackgroundColor MAT_BG
+    InterfaceBackgroundColor MAT_BG
+    LegendBackgroundColor MAT_BG
+    NodeBackgroundColor MAT_BG
+    NoteBackgroundColor MAT_BG
+    ObjectBackgroundColor MAT_BG
+    PackageBackgroundColor MAT_BG
+    ParticipantBackgroundColor MAT_BG
+    PartitionBackgroundColor MAT_BG
+    QueueBackgroundColor MAT_BG
+    RectangleBackgroundColor MAT_BG
+    SequenceBoxBackgroundColor MAT_BG
+    SequenceDividerBackgroundColor MAT_DIVIDER
+    SequenceGroupBackgroundColor MAT_BG
+    SequenceGroupBodyBackgroundColor MAT_BG
+    SequenceLifeLineBackgroundColor MAT_BG
+    SequenceReferenceBackgroundColor MAT_BG
+    SequenceReferenceHeaderBackgroundColor MAT_PRIMARY_DARK
+    StackBackgroundColor MAT_BG
+    StateBackgroundColor MAT_BG
+    StereotypeABackgroundColor MAT_BG
+    StereotypeCBackgroundColor MAT_BG
+    StereotypeEBackgroundColor MAT_BG
+    StereotypeIBackgroundColor MAT_BG
+    StereotypeNBackgroundColor MAT_BG
+    StorageBackgroundColor MAT_BG
+    TitleBackgroundColor MAT_BG
+    UsecaseBackgroundColor MAT_BG
+
+    ' Other Settings
+    roundcorner 4
+    linetype ortho
+    'Monochrome true
+
+    NoteFontName Arial
+    NoteFontStyle Italic
+    NoteFontColor MAT_PRIMARY_DARK
+    NoteBackgroundColor MAT_PRIMARY_LIGHT
+
+    DefaultTextAlignment    left
+
+}
+
+skinparam class {
+    FontColor               MAT_PRIMARY
+    FontStyle               bold
+    AttributeFontColor      MAT_PRIMARY_TEXT
+    TextAlignment           left
+
+    BorderColor             MAT_PRIMARY
+    BackgroundColor         MAT_BG
+    HeaderBackgroundColor   MAT_PRIMARY_DARK
+
+    ClassStereotypeFontColor red
+
+    ' important
+    FontColor<<main>>          MAT_PRIMARY_TEXT
+    BorderColor<<main>>        MAT_PRIMARY_TEXT
+    BackgroundColor<<main>>    MAT_ACCENT
+}
+@enduml

@@ -1,0 +1,157 @@
+@startuml
+
+    !include ./stylesheet.puml
+
+    package IndividualLevel{
+        class User<<main>>{
+            **id** — UUID
+            **email** — string
+            **organisationId** — UUID
+            **officeSpaceId** — UUID
+            **currentStatus()** — latest UserStatusChange record
+        }
+
+
+        class UserStatus{
+            **id** — UUID
+            **label** — string
+            **isActive** — boolean
+        }
+        note top of UserStatus
+            Possible statuses
+        endnote
+
+
+        class UserStatusChange{
+            **id** — UUID
+            **userId** — UUID
+            **userStatusId** — UUID
+            **recordDate** — Date
+        }
+        note top of UserStatusChange
+            Every status change
+        endnote
+
+        class TeamMembership{
+            **id** — UUID
+            **userId** — UUID
+            **teamId** — UUID
+            **isActive** — boolean
+        }
+        note right of TeamMembership
+            Optional membership
+            of the organisation's
+            users
+        endnote
+    }
+
+    package OrganisationLevel {
+        class Organisation<<main>>{
+            **id** — UUID
+            **planId** — UUID
+            **isActive** — boolean
+        }
+        note left of Organisation
+            Partner Company
+            Group which collects
+            teams and users
+        endnote
+
+        class Team{
+            **id** — UUID
+            **organisationId** — UUID
+            **name** — string
+        }
+        note top of Team
+            Teams inside
+            an <b>Organisation</b>
+        endnote
+
+        class Plan{
+            **id** — UUID
+            **name** — string
+            **validFrom** — Date
+            **validUntil** — Date
+            **cost** — money
+        }
+        note right of Plan
+            Paying plan of
+            an <b>Organisation</b>
+        endnote
+
+        class OfficeLocation{
+            **id** — UUID
+            **organisationId** — UUID
+            **name** — string
+        }
+        note left of OfficeLocation
+            Office building / floor
+        endnote
+
+        class OfficeSpace{
+            **id** — UUID
+            **officeLocationId** — UUID
+            **name** — string
+        }
+        note top of OfficeSpace
+            Room, where people can be found
+        endnote
+
+        User -- OfficeSpace
+        OfficeSpace -- OfficeLocation
+        OfficeLocation -- Organisation
+    }
+
+    package ProfileLevel {
+        class ProfileElement{
+            **id** — UUID
+            **organisationId** — UUID
+            **label** — string
+            **typeId** — UUID
+            **options** — string[]
+            **isOptional** — boolean
+            **isActive** — boolean
+        }
+        note right of ProfileElement
+            1 Profile element what
+            organisation members
+            can set on their profile
+        endnote
+
+        class ProfileElementType{
+            **id** — UUID
+            **label** — string
+        }
+        note right of ProfileElementType
+            Possible elements to choose from
+        endnote
+
+        class UserProfileElement{
+            **id** — UUID
+            **userId** — UUID
+            **profileElementId** — UUID
+        }
+        note right of UserProfileElement
+            Extension of user's
+            personal profile
+            with dynamic elements
+        endnote
+
+        User -- UserProfileElement
+        UserProfileElement -- ProfileElement
+        ProfileElement -- ProfileElementType
+        ProfileElement - Organisation
+    }
+
+    ' helper arrow for package alignment
+    'IndividualLevel ---d[hidden]--> OrganisationLevel
+
+    User -- Organisation
+    UserStatusChange -- User
+    UserStatusChange - UserStatus
+    Organisation -- Plan
+    Organisation -- Team
+    TeamMembership - Team
+    TeamMembership - User
+
+@enduml
