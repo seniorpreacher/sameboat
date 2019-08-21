@@ -11,7 +11,6 @@
             **currentStatus()** — latest UserStatusChange record
         }
 
-
         class UserStatus{
             **id** — UUID
             **label** — string
@@ -32,17 +31,34 @@
             Every status change
         endnote
 
-        class TeamMembership{
+        class CircleMembership{
             **id** — UUID
             **userId** — UUID
             **teamId** — UUID
-            **isActive** — boolean
+            **status** — UUID
+            **type** — UUID
+            **startDate** — Date
+            **endDate** — Date
         }
-        note right of TeamMembership
+        note top of CircleMembership
             Optional membership
             of the organisation's
             users
         endnote
+
+        class CircleMembershipStatus{
+            **id** — UUID
+            **label** — string
+            **isActive** — boolean
+        }
+
+        class CircleMembershipType{
+            **id** — UUID
+            **label** — string
+        }
+
+        CircleMembership --- CircleMembershipStatus
+        CircleMembership -- CircleMembershipType
     }
 
     package OrganisationLevel {
@@ -51,20 +67,21 @@
             **planId** — UUID
             **isActive** — boolean
         }
-        note left of Organisation
+        note right of Organisation
             Partner Company
             Group which collects
             teams and users
         endnote
 
-        class Team{
+        class Circle{
             **id** — UUID
             **organisationId** — UUID
             **name** — string
         }
-        note top of Team
-            Teams inside
+        note left of Circle
+            Circles inside
             an <b>Organisation</b>
+            Acts as a team
         endnote
 
         class Plan{
@@ -78,28 +95,6 @@
             Paying plan of
             an <b>Organisation</b>
         endnote
-
-        class OfficeLocation{
-            **id** — UUID
-            **organisationId** — UUID
-            **name** — string
-        }
-        note left of OfficeLocation
-            Office building / floor
-        endnote
-
-        class OfficeSpace{
-            **id** — UUID
-            **officeLocationId** — UUID
-            **name** — string
-        }
-        note top of OfficeSpace
-            Room, where people can be found
-        endnote
-
-        User -- OfficeSpace
-        OfficeSpace -- OfficeLocation
-        OfficeLocation -- Organisation
     }
 
     package ProfileLevel {
@@ -150,8 +145,8 @@
     UserStatusChange -- User
     UserStatusChange - UserStatus
     Organisation -- Plan
-    Organisation -- Team
-    TeamMembership - Team
-    TeamMembership - User
+    Organisation -- Circle
+    CircleMembership - Circle
+    CircleMembership - User
 
 @enduml
